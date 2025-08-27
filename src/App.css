@@ -1,0 +1,652 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  
+  /* KOMA Perfect Colors */
+  --koma-deep-purple: #4B0082;
+  --koma-black: #000000;
+  --koma-magenta: #8B008B;
+  --koma-gold: #FFD700;
+  --koma-white: #FFFFFF;
+  --koma-dark-purple: #2D0052;
+  --koma-light-purple: #6B46C1;
+  --koma-rose-gold: #E8B4CB;
+  --koma-silver: #C0C0C0;
+  
+  --background: var(--koma-white);
+  --foreground: var(--koma-black);
+  --card: var(--koma-white);
+  --card-foreground: var(--koma-black);
+  --popover: var(--koma-white);
+  --popover-foreground: var(--koma-black);
+  --primary: var(--koma-deep-purple);
+  --primary-foreground: var(--koma-white);
+  --secondary: var(--koma-magenta);
+  --secondary-foreground: var(--koma-white);
+  --muted: #f8f9fa;
+  --muted-foreground: #6c757d;
+  --accent: var(--koma-gold);
+  --accent-foreground: var(--koma-black);
+  --destructive: #dc3545;
+  --border: #e9ecef;
+  --input: #e9ecef;
+  --ring: var(--koma-gold);
+  --chart-1: var(--koma-deep-purple);
+  --chart-2: var(--koma-magenta);
+  --chart-3: var(--koma-gold);
+  --chart-4: var(--koma-light-purple);
+  --chart-5: var(--koma-rose-gold);
+  --sidebar: var(--koma-white);
+  --sidebar-foreground: var(--koma-black);
+  --sidebar-primary: var(--koma-deep-purple);
+  --sidebar-primary-foreground: var(--koma-white);
+  --sidebar-accent: var(--koma-gold);
+  --sidebar-accent-foreground: var(--koma-black);
+  --sidebar-border: #e9ecef;
+  --sidebar-ring: var(--koma-gold);
+}
+
+.dark {
+  --background: var(--koma-black);
+  --foreground: var(--koma-white);
+  --card: var(--koma-dark-purple);
+  --card-foreground: var(--koma-white);
+  --popover: var(--koma-dark-purple);
+  --popover-foreground: var(--koma-white);
+  --primary: var(--koma-gold);
+  --primary-foreground: var(--koma-black);
+  --secondary: var(--koma-magenta);
+  --secondary-foreground: var(--koma-white);
+  --muted: #2d3748;
+  --muted-foreground: #a0aec0;
+  --accent: var(--koma-gold);
+  --accent-foreground: var(--koma-black);
+  --destructive: #e53e3e;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: var(--koma-gold);
+  --chart-1: var(--koma-magenta);
+  --chart-2: var(--koma-gold);
+  --chart-3: var(--koma-light-purple);
+  --chart-4: var(--koma-rose-gold);
+  --chart-5: var(--koma-silver);
+  --sidebar: var(--koma-black);
+  --sidebar-foreground: var(--koma-white);
+  --sidebar-primary: var(--koma-gold);
+  --sidebar-primary-foreground: var(--koma-black);
+  --sidebar-accent: var(--koma-magenta);
+  --sidebar-accent-foreground: var(--koma-white);
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: var(--koma-gold);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Alfa Slab One', serif;
+  }
+}
+
+/* KOMA Perfect Styles */
+.koma-hero-bg {
+  background: linear-gradient(135deg, var(--koma-deep-purple) 0%, var(--koma-black) 30%, var(--koma-magenta) 70%, var(--koma-gold) 100%);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease-in-out infinite;
+}
+
+.koma-gradient-text {
+  background: linear-gradient(135deg, var(--koma-magenta), var(--koma-gold), var(--koma-deep-purple));
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 8s ease-in-out infinite;
+}
+
+.koma-gold-button {
+  background: linear-gradient(135deg, var(--koma-gold), #FFA500);
+  color: var(--koma-black);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.koma-gold-button:hover {
+  background: linear-gradient(135deg, #FFA500, var(--koma-gold));
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(255, 215, 0, 0.4);
+}
+
+.koma-purple-button {
+  background: linear-gradient(135deg, var(--koma-deep-purple), var(--koma-magenta));
+  color: var(--koma-white);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(75, 0, 130, 0.3);
+}
+
+.koma-purple-button:hover {
+  background: linear-gradient(135deg, var(--koma-magenta), var(--koma-deep-purple));
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(75, 0, 130, 0.4);
+}
+
+.koma-card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
+}
+
+.koma-card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(75, 0, 130, 0.15);
+  border-color: var(--koma-gold);
+}
+
+.dark .koma-card-hover:hover {
+  box-shadow: 0 25px 50px rgba(255, 215, 0, 0.2);
+}
+
+.koma-service-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.koma-service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+  transition: left 0.6s;
+}
+
+.koma-service-card:hover::before {
+  left: 100%;
+}
+
+.koma-service-card:hover {
+  background: linear-gradient(135deg, var(--koma-deep-purple), var(--koma-magenta));
+  color: var(--koma-white);
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(75, 0, 130, 0.3);
+}
+
+.koma-client-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: grayscale(100%);
+  opacity: 0.7;
+}
+
+.koma-client-card:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Perfect Animations */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-15px) rotate(1deg); }
+  66% { transform: translateY(-5px) rotate(-1deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes particle-float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.koma-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.koma-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.koma-fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.koma-slide-in-left {
+  animation: slideInLeft 0.8s ease-out;
+}
+
+.koma-slide-in-right {
+  animation: slideInRight 0.8s ease-out;
+}
+
+.koma-zoom-in {
+  animation: zoomIn 0.6s ease-out;
+}
+
+.koma-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--koma-gold);
+  border-radius: 50%;
+  animation: particle-float 12s infinite linear;
+  box-shadow: 0 0 10px var(--koma-gold);
+}
+
+/* Perfect Responsive Design */
+.koma-section-padding {
+  padding: 6rem 0;
+}
+
+@media (max-width: 1024px) {
+  .koma-section-padding {
+    padding: 5rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .koma-section-padding {
+    padding: 4rem 0;
+  }
+  
+  h1 { font-size: 2.5rem; line-height: 1.1; }
+  h2 { font-size: 2rem; line-height: 1.2; }
+  h3 { font-size: 1.5rem; line-height: 1.3; }
+  
+  .koma-hero-particles {
+    display: none; /* Hide particles on mobile for performance */
+  }
+  
+  .koma-service-card {
+    margin-bottom: 1rem;
+  }
+  
+  .koma-card-hover:hover {
+    transform: translateY(-4px) scale(1.01); /* Reduced hover effect on mobile */
+  }
+}
+
+@media (max-width: 640px) {
+  .koma-section-padding {
+    padding: 3rem 0;
+  }
+  
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.25rem; }
+  
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .koma-gold-button, .koma-purple-button {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Perfect Touch Interactions for Mobile */
+@media (hover: none) and (pointer: coarse) {
+  .koma-card-hover:hover {
+    transform: none;
+    box-shadow: 0 10px 25px rgba(75, 0, 130, 0.1);
+  }
+  
+  .koma-service-card:hover {
+    transform: none;
+    background: linear-gradient(135deg, var(--koma-deep-purple), var(--koma-magenta));
+    color: var(--koma-white);
+  }
+  
+  .koma-client-card:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* Enhanced Dark Mode Transitions */
+.dark-mode-transition {
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Perfect Grid Layouts */
+.koma-responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .koma-responsive-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* Perfect Image Optimization */
+.koma-responsive-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+/* Perfect Typography Scaling */
+.koma-responsive-text {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.6;
+}
+
+.koma-responsive-heading {
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.1;
+}
+
+/* Perfect Button Responsiveness */
+.koma-responsive-button {
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2rem);
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+/* Perfect Navigation Responsiveness */
+@media (max-width: 768px) {
+  .koma-nav-item::after {
+    display: none;
+  }
+  
+  .koma-nav-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .koma-nav-item:last-child {
+    border-bottom: none;
+  }
+}
+
+/* Perfect Loading States */
+.koma-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+.dark .koma-skeleton {
+  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Perfect Accessibility */
+.koma-focus-visible:focus-visible {
+  outline: 3px solid var(--koma-gold);
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+.koma-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Perfect High Contrast Mode */
+@media (prefers-contrast: high) {
+  .koma-gradient-text {
+    background: none;
+    color: var(--foreground);
+    -webkit-text-fill-color: unset;
+  }
+  
+  .koma-card-hover {
+    border: 2px solid var(--foreground);
+  }
+}
+
+/* Perfect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .koma-hero-particles {
+    display: none;
+  }
+  
+  .koma-particle {
+    display: none;
+  }
+}
+
+/* Perfect Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--koma-deep-purple), var(--koma-magenta));
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--koma-magenta), var(--koma-gold));
+}
+
+/* Perfect Focus States */
+button:focus,
+input:focus,
+textarea:focus {
+  outline: 3px solid var(--koma-gold);
+  outline-offset: 2px;
+}
+
+/* Perfect Loading Animation */
+.koma-loading {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Perfect Glass Effect */
+.koma-glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .koma-glass {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Perfect Navigation */
+.koma-nav-item {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.koma-nav-item::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 50%;
+  background: var(--koma-gold);
+  transition: all 0.3s ease;
+}
+
+.koma-nav-item:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Perfect Hero Particles */
+.koma-hero-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Perfect Smooth Transitions */
+* {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Perfect Typography */
+.koma-text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.dark .koma-text-shadow {
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.1);
+}
+
